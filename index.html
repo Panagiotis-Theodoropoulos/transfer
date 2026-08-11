@@ -1,1030 +1,1930 @@
 <!DOCTYPE html>
 <html lang="el">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="theme-color" content="#07140d" />
-
-  <title>DOUBLE TRANSFER | Η νέα εποχή στα πράσινα</title>
-
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
-
-  <style>
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-
-    :root {
-      --green: #0b7a3e;
-      --green-light: #19b665;
-      --green-dark: #053c22;
-      --black: #050806;
-      --card: #0b110d;
-      --white: #f4f6f4;
-      --muted: #9ca8a0;
-      --red: #dc2f2f;
-    }
-
-    html {
-      scroll-behavior: smooth;
-    }
-
-    body {
-      font-family: "Inter", sans-serif;
-      background:
-        radial-gradient(circle at 50% 0%, #113c25 0%, #07130c 25%, #040605 62%);
-      color: white;
-      min-height: 100vh;
-    }
-
-    img {
-      width: 100%;
-      display: block;
-    }
-
-    .page {
-      width: 100%;
-      max-width: 650px;
-      margin: auto;
-      overflow: hidden;
-      background: #050806;
-      min-height: 100vh;
-      box-shadow: 0 0 80px rgba(0,0,0,.65);
-    }
-
-    /* HEADER */
-
-    .topbar {
-      height: 66px;
-      padding: 0 17px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      background: rgba(0,0,0,.96);
-      border-bottom: 1px solid rgba(255,255,255,.08);
-      position: sticky;
-      top: 0;
-      z-index: 100;
-      backdrop-filter: blur(16px);
-    }
-
-    .burger {
-      width: 28px;
-      height: 20px;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-    }
-
-    .burger span {
-      height: 2px;
-      width: 100%;
-      background: white;
-      border-radius: 10px;
-    }
-
-    .brand {
-      text-align: center;
-      line-height: 1;
-    }
-
-    .brand-main {
-      font-family: "Anton";
-      letter-spacing: 1px;
-      font-size: 25px;
-      font-style: italic;
-    }
-
-    .brand-main b {
-      color: var(--green-light);
-    }
-
-    .brand-small {
-      font-size: 7px;
-      color: #a8aea9;
-      letter-spacing: 1.2px;
-      margin-top: 4px;
-    }
-
-    .live {
-      font-size: 12px;
-      font-weight: 900;
-      display: flex;
-      align-items: center;
-      gap: 6px;
-    }
-
-    .live::before {
-      content: "";
-      width: 8px;
-      height: 8px;
-      background: #ef3030;
-      border-radius: 50%;
-      box-shadow: 0 0 10px red;
-    }
-
-    .nav {
-      background: linear-gradient(90deg,#062f1a,#0a5830,#062d19);
-      display: flex;
-      overflow-x: auto;
-      scrollbar-width: none;
-      padding: 0 12px;
-      border-bottom: 1px solid rgba(255,255,255,.08);
-    }
-
-    .nav::-webkit-scrollbar {
-      display: none;
-    }
-
-    .nav span {
-      padding: 14px 14px 12px;
-      white-space: nowrap;
-      font-size: 11px;
-      color: #cbd3cd;
-    }
-
-    .nav .active {
-      color: white;
-      font-weight: 800;
-      border-bottom: 3px solid white;
-    }
-
-    /* BREAKING */
-
-    .ticker {
-      display: flex;
-      align-items: center;
-      background: #111;
-      border-bottom: 1px solid #262626;
-      overflow: hidden;
-    }
-
-    .ticker-label {
-      background: var(--red);
-      font-size: 10px;
-      font-weight: 900;
-      padding: 10px 12px;
-      flex-shrink: 0;
-    }
-
-    .ticker-text {
-      font-size: 10px;
-      white-space: nowrap;
-      animation: ticker 18s linear infinite;
-      padding-left: 100%;
-    }
-
-    @keyframes ticker {
-      to {
-        transform: translateX(-180%);
-      }
-    }
-
-    /* ARTICLE */
-
-    article {
-      padding-bottom: 90px;
-    }
-
-    .hero-text {
-      padding: 25px 18px 15px;
-    }
-
-    .badges {
-      display: flex;
-      gap: 8px;
-      margin-bottom: 13px;
-    }
-
-    .badge {
-      font-size: 10px;
-      font-weight: 900;
-      padding: 7px 10px;
-      border-radius: 3px;
-      letter-spacing: .5px;
-    }
-
-    .badge.green {
-      background: var(--green);
-    }
-
-    .badge.red {
-      background: #b92121;
-    }
-
-    h1 {
-      font-family: "Anton", sans-serif;
-      font-size: clamp(42px, 12vw, 66px);
-      font-weight: 400;
-      line-height: .96;
-      letter-spacing: -.5px;
-      text-transform: uppercase;
-    }
-
-    h1 .green {
-      color: var(--green-light);
-    }
-
-    .subtitle {
-      margin-top: 16px;
-      font-size: 16px;
-      line-height: 1.45;
-      color: #d6dcd8;
-      font-weight: 500;
-    }
-
-    .meta {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      margin-top: 18px;
-      padding-top: 14px;
-      border-top: 1px solid #242b26;
-      color: var(--muted);
-      font-size: 10px;
-    }
-
-    .hero-image {
-      position: relative;
-      margin-top: 8px;
-    }
-
-    .hero-image img {
-      min-height: 280px;
-      object-fit: cover;
-    }
-
-    .hero-image::after {
-      content: "";
-      position: absolute;
-      inset: auto 0 0 0;
-      height: 80px;
-      background: linear-gradient(transparent,#050806);
-    }
-
-    .caption {
-      color: #89938c;
-      font-size: 9px;
-      padding: 5px 18px 0;
-    }
-
-    /* LEAD */
-
-    .content {
-      padding: 0 18px;
-    }
-
-    .lead {
-      font-size: 19px;
-      line-height: 1.6;
-      font-weight: 600;
-      margin: 25px 0 20px;
-    }
-
-    p {
-      font-size: 15px;
-      line-height: 1.8;
-      color: #d1d7d3;
-      margin-bottom: 20px;
-    }
-
-    .dropcap::first-letter {
-      font-family: "Anton";
-      font-size: 65px;
-      color: var(--green-light);
-      float: left;
-      line-height: .8;
-      margin-right: 8px;
-      margin-top: 10px;
-    }
-
-    .section-title {
-      font-family: "Anton";
-      text-transform: uppercase;
-      font-size: 30px;
-      line-height: 1.05;
-      margin: 38px 0 15px;
-    }
-
-    .section-title span {
-      color: var(--green-light);
-    }
-
-    /* BIG QUOTE */
-
-    .big-quote {
-      margin: 35px 0;
-      padding: 24px 20px;
-      background:
-        linear-gradient(135deg,rgba(16,116,60,.22),rgba(5,10,7,.9));
-      border-left: 4px solid var(--green-light);
-      position: relative;
-    }
-
-    .big-quote::before {
-      content: "“";
-      position: absolute;
-      font-family: Georgia;
-      font-size: 90px;
-      top: -18px;
-      right: 15px;
-      color: rgba(25,182,101,.12);
-    }
-
-    .big-quote p {
-      font-size: 20px;
-      line-height: 1.45;
-      font-weight: 800;
-      color: white;
-      margin: 0;
-    }
-
-    .big-quote small {
-      display: block;
-      margin-top: 12px;
-      color: var(--green-light);
-      font-weight: 800;
-      font-size: 10px;
-    }
-
-    /* PHOTO */
-
-    .photo-block {
-      margin: 30px -18px;
-    }
-
-    .photo-block img {
-      max-height: 580px;
-      object-fit: cover;
-    }
-
-    .photo-caption {
-      padding: 8px 18px;
-      font-size: 9px;
-      color: #808a83;
-      border-bottom: 1px solid #171b18;
-    }
-
-    /* TIMELINE */
-
-    .timeline {
-      margin: 30px 0;
-      position: relative;
-      padding-left: 25px;
-    }
-
-    .timeline::before {
-      content: "";
-      position: absolute;
-      left: 6px;
-      top: 5px;
-      bottom: 4px;
-      width: 2px;
-      background: linear-gradient(var(--red),#755500,var(--green-light));
-    }
-
-    .event {
-      position: relative;
-      padding: 0 0 28px 12px;
-    }
-
-    .event::before {
-      content: "";
-      width: 13px;
-      height: 13px;
-      position: absolute;
-      left: -25px;
-      top: 3px;
-      border-radius: 50%;
-      background: #050806;
-      border: 3px solid var(--green-light);
-    }
-
-    .event.red::before {
-      border-color: #e83939;
-    }
-
-    .event-date {
-      font-size: 9px;
-      font-weight: 900;
-      color: var(--green-light);
-      letter-spacing: 1px;
-      margin-bottom: 5px;
-    }
-
-    .event.red .event-date {
-      color: #f04b4b;
-    }
-
-    .event-title {
-      font-weight: 900;
-      font-size: 16px;
-      margin-bottom: 5px;
-    }
-
-    .event-desc {
-      font-size: 12px;
-      color: #9ca59f;
-      line-height: 1.5;
-    }
-
-    /* DARK DRAMA BOX */
-
-    .drama {
-      border: 1px solid #5e1b1b;
-      background:
-        linear-gradient(145deg,rgba(115,15,15,.15),rgba(9,9,9,.9));
-      padding: 20px;
-      margin: 30px 0;
-      position: relative;
-    }
-
-    .drama-label {
-      display: inline-block;
-      background: #be2424;
-      font-size: 9px;
-      font-weight: 900;
-      padding: 6px 9px;
-      margin-bottom: 13px;
-    }
-
-    .drama h3 {
-      font-family: "Anton";
-      font-size: 26px;
-      font-weight: 400;
-      text-transform: uppercase;
-      margin-bottom: 12px;
-    }
-
-    .drama p {
-      margin: 0;
-      color: #c9ceca;
-      font-size: 13px;
-    }
-
-    /* IMAGE COLLAGE */
-
-    .collage {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 5px;
-      margin: 30px -18px;
-    }
-
-    .collage img {
-      height: 230px;
-      object-fit: cover;
-    }
-
-    .collage .wide {
-      grid-column: 1 / -1;
-      height: 250px;
-    }
-
-    /* PLAYERS */
-
-    .players {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 10px;
-      margin: 25px 0 35px;
-    }
-
-    .player {
-      background: #0c120e;
-      border: 1px solid #1b3828;
-      overflow: hidden;
-    }
-
-    .player img {
-      height: 210px;
-      object-fit: cover;
-    }
-
-    .player-info {
-      padding: 12px;
-    }
-
-    .player-name {
-      font-family: "Anton";
-      text-transform: uppercase;
-      font-size: 18px;
-      line-height: 1.05;
-    }
-
-    .player-name span {
-      color: var(--green-light);
-    }
-
-    .player-tag {
-      font-size: 9px;
-      color: #89938c;
-      margin-top: 7px;
-    }
-
-    /* END */
-
-    .ending {
-      margin-top: 40px;
-      padding: 35px 20px;
-      text-align: center;
-      background:
-        radial-gradient(circle at center,rgba(15,123,65,.35),transparent 65%),
-        #07100a;
-      border-top: 1px solid #185832;
-      border-bottom: 1px solid #185832;
-    }
-
-    .clover {
-      font-size: 50px;
-      filter: drop-shadow(0 0 15px rgba(34,200,100,.3));
-    }
-
-    .ending h2 {
-      font-family: "Anton";
-      font-size: 37px;
-      line-height: 1;
-      margin: 15px 0;
-      text-transform: uppercase;
-    }
-
-    .ending h2 span {
-      color: var(--green-light);
-    }
-
-    .ending p {
-      margin: 0 auto;
-      font-size: 13px;
-      max-width: 390px;
-    }
-
-    /* DISCLAIMER */
-
-    .disclaimer {
-      margin: 30px 18px 0;
-      font-size: 9px;
-      line-height: 1.5;
-      color: #59615c;
-      text-align: center;
-    }
-
-    /* BOTTOM BAR */
-
-    .bottom-nav {
-      position: fixed;
-      left: 50%;
-      transform: translateX(-50%);
-      bottom: 0;
-      width: 100%;
-      max-width: 650px;
-      height: 67px;
-      background: rgba(4,7,5,.96);
-      backdrop-filter: blur(14px);
-      border-top: 1px solid #253029;
-      display: grid;
-      grid-template-columns: repeat(5, 1fr);
-      z-index: 99;
-    }
-
-    .bottom-item {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      gap: 5px;
-      color: #838c86;
-      font-size: 8px;
-    }
-
-    .bottom-item .icon {
-      font-size: 18px;
-    }
-
-    .bottom-item.active {
-      color: var(--green-light);
-      font-weight: 800;
-    }
-
-    /* DESKTOP */
-    @media (min-width: 700px) {
-      body {
-        padding: 25px 0;
-      }
-
-      .page {
-        border-radius: 13px;
-      }
-
-      .topbar {
-        border-radius: 13px 13px 0 0;
-      }
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0">
+<meta name="theme-color" content="#020805">
+
+<title>TRANSFER SHOCK | Θεοδωροπούλου & Χατζησαράντου</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+
+:root{
+  --green:#12a653;
+  --bright:#22d274;
+  --deep:#052816;
+  --black:#020403;
+  --card:#09100c;
+  --white:#f3f5f4;
+  --grey:#929d96;
+  --red:#e32636;
+}
+
+html{
+  scroll-behavior:smooth;
+}
+
+body{
+  background:#010201;
+  color:white;
+  font-family:"Inter",sans-serif;
+  overflow-x:hidden;
+}
+
+img{
+  display:block;
+  width:100%;
+}
+
+/* APP */
+
+.app{
+  width:100%;
+  max-width:660px;
+  margin:auto;
+  background:#030604;
+  min-height:100vh;
+  overflow:hidden;
+  position:relative;
+}
+
+/* =====================================================
+   CINEMATIC OPENING
+===================================================== */
+
+#intro{
+  position:fixed;
+  inset:0;
+  z-index:9999;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  background:
+    radial-gradient(circle at 50% 70%,rgba(16,151,75,.25),transparent 35%),
+    linear-gradient(#000,#020503);
+
+  transition:
+    opacity 1.2s ease,
+    visibility 1.2s ease;
+}
+
+#intro.closed{
+  opacity:0;
+  visibility:hidden;
+}
+
+.intro-content{
+  text-align:center;
+  width:92%;
+}
+
+.breaking-small{
+  font-size:10px;
+  letter-spacing:5px;
+  font-weight:900;
+  color:#ff3847;
+
+  animation:blink 1s infinite;
+}
+
+@keyframes blink{
+  50%{opacity:.3}
+}
+
+.line{
+  height:1px;
+  width:100%;
+  background:linear-gradient(90deg,transparent,#555,transparent);
+  margin:22px 0;
+}
+
+.intro-kicker{
+  font-size:11px;
+  color:#aaa;
+  letter-spacing:2px;
+}
+
+.intro-big{
+  margin-top:16px;
+  font-family:"Anton";
+  text-transform:uppercase;
+  line-height:.9;
+
+  font-size:clamp(46px,14vw,82px);
+}
+
+.intro-big .green{
+  color:var(--bright);
+}
+
+.intro-names{
+  margin-top:28px;
+  font-size:11px;
+  letter-spacing:1.5px;
+  line-height:1.8;
+  font-weight:800;
+}
+
+.enter{
+  margin-top:35px;
+  appearance:none;
+  border:1px solid rgba(255,255,255,.25);
+  background:rgba(255,255,255,.05);
+  color:white;
+  border-radius:50px;
+  padding:15px 28px;
+  font-size:11px;
+  font-weight:900;
+  letter-spacing:1px;
+  cursor:pointer;
+
+  backdrop-filter:blur(10px);
+
+  animation:enterPulse 2s infinite;
+}
+
+@keyframes enterPulse{
+  50%{
+    box-shadow:
+      0 0 0 8px rgba(18,166,83,.06),
+      0 0 35px rgba(18,166,83,.25);
+  }
+}
+
+/* =====================================================
+   HEADER
+===================================================== */
+
+header{
+  position:sticky;
+  top:0;
+  z-index:500;
+
+  background:rgba(1,3,2,.94);
+  backdrop-filter:blur(20px);
+
+  border-bottom:1px solid rgba(255,255,255,.08);
+}
+
+.main-header{
+  height:64px;
+  padding:0 17px;
+
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+}
+
+.hamburger{
+  font-size:25px;
+}
+
+.logo{
+  font-family:"Anton";
+  font-style:italic;
+  font-size:25px;
+  letter-spacing:.5px;
+}
+
+.logo span{
+  color:var(--bright);
+}
+
+.live{
+  display:flex;
+  align-items:center;
+  gap:7px;
+
+  font-size:10px;
+  font-weight:900;
+}
+
+.live-dot{
+  width:8px;
+  height:8px;
+  border-radius:50%;
+  background:#ff2333;
+
+  box-shadow:0 0 12px red;
+}
+
+.categories{
+  display:flex;
+  overflow-x:auto;
+  scrollbar-width:none;
+
+  background:
+    linear-gradient(90deg,#041b0f,#0a4b2b,#041b0f);
+}
+
+.categories::-webkit-scrollbar{
+  display:none;
+}
+
+.categories span{
+  padding:12px 13px;
+  white-space:nowrap;
+  font-size:10px;
+  color:#aeb9b2;
+}
+
+.categories span.on{
+  color:white;
+  font-weight:900;
+  border-bottom:3px solid white;
+}
+
+/* =====================================================
+   TICKER
+===================================================== */
+
+.ticker{
+  background:#111;
+  display:flex;
+  height:35px;
+  overflow:hidden;
+  border-bottom:1px solid #272727;
+}
+
+.ticker-label{
+  flex-shrink:0;
+  padding:11px 12px;
+  background:var(--red);
+
+  font-size:9px;
+  font-weight:900;
+  letter-spacing:.7px;
+
+  z-index:2;
+}
+
+.ticker-track{
+  display:flex;
+  align-items:center;
+
+  white-space:nowrap;
+
+  font-size:9px;
+  letter-spacing:.4px;
+
+  animation:ticker 22s linear infinite;
+  padding-left:100%;
+}
+
+@keyframes ticker{
+  to{
+    transform:translateX(-210%);
+  }
+}
+
+/* =====================================================
+   HERO
+===================================================== */
+
+.hero{
+  min-height:82vh;
+  position:relative;
+  display:flex;
+  align-items:flex-end;
+  overflow:hidden;
+}
+
+.hero-bg{
+  position:absolute;
+  inset:0;
+}
+
+.hero-bg img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  object-position:center;
+  transform:scale(1.05);
+}
+
+.hero-bg::after{
+  content:"";
+  position:absolute;
+  inset:0;
+
+  background:
+    linear-gradient(
+      to bottom,
+      rgba(0,0,0,.08) 0%,
+      rgba(0,0,0,.12) 36%,
+      rgba(0,0,0,.75) 72%,
+      #030604 100%
+    );
+}
+
+.hero-copy{
+  position:relative;
+  z-index:2;
+  padding:30px 18px 45px;
+}
+
+.tags{
+  display:flex;
+  gap:7px;
+  margin-bottom:15px;
+}
+
+.tag{
+  padding:7px 9px;
+  font-size:8px;
+  font-weight:900;
+  letter-spacing:.8px;
+}
+
+.tag.red{
+  background:var(--red);
+}
+
+.tag.green{
+  background:var(--green);
+}
+
+.hero h1{
+  font-family:"Anton";
+  font-weight:400;
+  text-transform:uppercase;
+  line-height:.9;
+
+  font-size:clamp(49px,14vw,80px);
+}
+
+.hero h1 span{
+  color:var(--bright);
+}
+
+.hero-deck{
+  margin-top:17px;
+  max-width:510px;
+
+  font-size:14px;
+  line-height:1.6;
+  color:#d3dad5;
+}
+
+.hero-meta{
+  margin-top:19px;
+
+  display:flex;
+  justify-content:space-between;
+
+  font-size:9px;
+  color:#929c95;
+
+  border-top:1px solid rgba(255,255,255,.14);
+  padding-top:13px;
+}
+
+/* =====================================================
+   SHOCK STRIP
+===================================================== */
+
+.shock{
+  padding:42px 18px;
+  text-align:center;
+
+  background:
+    radial-gradient(circle at center,rgba(26,191,99,.22),transparent 60%),
+    #030604;
+}
+
+.shock-label{
+  color:var(--bright);
+  font-size:9px;
+  font-weight:900;
+  letter-spacing:4px;
+}
+
+.shock h2{
+  font-family:"Anton";
+  font-size:44px;
+  line-height:.96;
+  margin-top:13px;
+  text-transform:uppercase;
+}
+
+.shock h2 span{
+  color:var(--bright);
+}
+
+.shock p{
+  font-size:13px;
+  color:#abb4ae;
+  line-height:1.7;
+  max-width:450px;
+  margin:18px auto 0;
+}
+
+/* =====================================================
+   CONTENT
+===================================================== */
+
+.content{
+  padding:0 18px;
+}
+
+.lead{
+  font-size:19px;
+  font-weight:700;
+  line-height:1.55;
+
+  margin:34px 0 23px;
+}
+
+article p{
+  font-size:14px;
+  line-height:1.8;
+  color:#ccd3ce;
+
+  margin-bottom:20px;
+}
+
+article strong{
+  color:white;
+}
+
+/* SECTION */
+
+.section-head{
+  margin:45px 0 18px;
+}
+
+.section-no{
+  color:var(--bright);
+  letter-spacing:3px;
+  font-size:8px;
+  font-weight:900;
+}
+
+.section-head h2{
+  font-family:"Anton";
+  font-weight:400;
+  font-size:36px;
+  line-height:1;
+
+  margin-top:7px;
+  text-transform:uppercase;
+}
+
+.section-head h2 span{
+  color:var(--bright);
+}
+
+/* =====================================================
+   STATEMENT BLOCK
+===================================================== */
+
+.statement{
+  margin:35px -18px;
+  padding:38px 23px;
+
+  text-align:center;
+
+  border-top:1px solid #154326;
+  border-bottom:1px solid #154326;
+
+  background:
+    linear-gradient(120deg,#07150d,#092b19,#07150d);
+}
+
+.statement .small{
+  color:#88a594;
+  font-size:8px;
+  letter-spacing:3px;
+  font-weight:900;
+}
+
+.statement .big{
+  margin-top:10px;
+
+  font-family:"Anton";
+  font-size:42px;
+  line-height:.95;
+  text-transform:uppercase;
+}
+
+.statement .big span{
+  color:var(--bright);
+}
+
+/* =====================================================
+   PLAYER CARDS
+===================================================== */
+
+.player-area{
+  margin:30px 0;
+}
+
+.player-card{
+  background:#09110c;
+  border:1px solid #183b28;
+
+  margin-bottom:16px;
+  overflow:hidden;
+
+  position:relative;
+}
+
+.player-photo{
+  height:430px;
+  overflow:hidden;
+}
+
+.player-photo img{
+  height:100%;
+  object-fit:cover;
+}
+
+.player-info{
+  padding:18px;
+}
+
+.player-number{
+  font-size:8px;
+  color:var(--bright);
+  font-weight:900;
+  letter-spacing:2px;
+}
+
+.player-name{
+  margin-top:7px;
+
+  font-family:"Anton";
+  font-size:31px;
+  line-height:.96;
+
+  text-transform:uppercase;
+}
+
+.player-name span{
+  color:var(--bright);
+}
+
+.weapon{
+  margin-top:10px;
+  font-size:10px;
+  color:#8c9890;
+}
+
+.achievements{
+  margin-top:18px;
+  display:grid;
+  grid-template-columns:1fr 1fr;
+
+  gap:8px;
+}
+
+.achievement{
+  background:#0c1710;
+  padding:13px 10px;
+  min-height:78px;
+}
+
+.achievement b{
+  font-size:19px;
+  display:block;
+}
+
+.achievement span{
+  margin-top:5px;
+  display:block;
+
+  font-size:8px;
+  line-height:1.4;
+  color:#8f9a92;
+}
+
+/* =====================================================
+   VS / TRANSFER
+===================================================== */
+
+.transfer-board{
+  margin:40px -18px;
+  background:#050805;
+
+  padding:40px 18px;
+
+  text-align:center;
+
+  border-top:1px solid #1b3f29;
+  border-bottom:1px solid #1b3f29;
+}
+
+.transfer-board small{
+  color:#8ca095;
+  font-weight:900;
+  letter-spacing:3px;
+}
+
+.oldclub{
+  margin-top:20px;
+  font-family:"Anton";
+  font-size:29px;
+  color:#aaa;
+}
+
+.arrow{
+  font-size:35px;
+  color:var(--bright);
+  margin:7px 0;
+}
+
+.newclub{
+  font-family:"Anton";
+  font-size:42px;
+  color:var(--bright);
+}
+
+.transfer-caption{
+  margin-top:13px;
+  font-size:10px;
+  color:#8f9992;
+}
+
+/* =====================================================
+   PHOTO MOMENTS
+===================================================== */
+
+.fullphoto{
+  margin:30px -18px;
+  overflow:hidden;
+}
+
+.fullphoto img{
+  max-height:630px;
+  object-fit:cover;
+}
+
+.photo-caption{
+  padding:8px 18px;
+  background:#060806;
+
+  color:#687069;
+  font-size:8px;
+}
+
+/* =====================================================
+   TWO COLUMN GALLERY
+===================================================== */
+
+.gallery{
+  margin:32px -18px;
+  display:grid;
+  grid-template-columns:1fr 1fr;
+
+  gap:3px;
+}
+
+.gallery img{
+  height:235px;
+  object-fit:cover;
+}
+
+.gallery img.big{
+  grid-column:1/-1;
+  height:300px;
+}
+
+/* =====================================================
+   DRAMA SECTION
+===================================================== */
+
+.darkchapter{
+  margin:45px -18px;
+  padding:45px 22px;
+
+  position:relative;
+  overflow:hidden;
+
+  background:
+    radial-gradient(circle at top right,rgba(164,21,30,.14),transparent 50%),
+    #070707;
+}
+
+.darkchapter::before{
+  content:"";
+  position:absolute;
+  width:220px;
+  height:220px;
+  border-radius:50%;
+
+  right:-100px;
+  top:-100px;
+
+  background:rgba(195,20,30,.07);
+}
+
+.red-label{
+  display:inline-block;
+
+  padding:6px 9px;
+  background:#b71f2b;
+
+  font-size:8px;
+  font-weight:900;
+}
+
+.darkchapter h2{
+  margin-top:15px;
+
+  font-family:"Anton";
+  font-size:39px;
+  font-weight:400;
+  line-height:.97;
+  text-transform:uppercase;
+}
+
+.darkchapter p{
+  margin-top:17px;
+  color:#bbb;
+}
+
+/* =====================================================
+   TIMELINE
+===================================================== */
+
+.timeline{
+  margin:30px 0 10px;
+  padding-left:22px;
+
+  position:relative;
+}
+
+.timeline::before{
+  content:"";
+  position:absolute;
+  left:5px;
+  top:8px;
+  bottom:15px;
+
+  width:1px;
+
+  background:
+    linear-gradient(#a9282e,#7f7027,var(--bright));
+}
+
+.timeline-item{
+  position:relative;
+  padding:0 0 30px 16px;
+}
+
+.timeline-item::before{
+  content:"";
+  position:absolute;
+
+  left:-22px;
+  top:3px;
+
+  width:9px;
+  height:9px;
+  border-radius:50%;
+
+  background:#030604;
+
+  border:2px solid var(--bright);
+}
+
+.timeline-item.red::before{
+  border-color:#dd3340;
+}
+
+.time{
+  color:var(--bright);
+  font-size:8px;
+  font-weight:900;
+  letter-spacing:2px;
+}
+
+.timeline-item.red .time{
+  color:#e34b55;
+}
+
+.timeline-title{
+  font-size:15px;
+  font-weight:900;
+  margin-top:5px;
+}
+
+.timeline-text{
+  font-size:11px;
+  line-height:1.6;
+  color:#909992;
+  margin-top:6px;
+}
+
+/* =====================================================
+   QUOTE
+===================================================== */
+
+.quote{
+  margin:40px 0;
+  padding:25px 18px;
+
+  border-left:3px solid var(--bright);
+
+  background:
+    linear-gradient(90deg,rgba(20,166,83,.12),transparent);
+}
+
+.quote p{
+  margin:0;
+  font-size:19px;
+  line-height:1.5;
+  font-weight:800;
+  color:white;
+}
+
+.quote span{
+  display:block;
+  color:var(--bright);
+  margin-top:12px;
+
+  font-size:8px;
+  letter-spacing:2px;
+  font-weight:900;
+}
+
+/* =====================================================
+   NUMBERS
+===================================================== */
+
+.numbers{
+  margin:40px -18px;
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+
+  border-top:1px solid #193925;
+  border-bottom:1px solid #193925;
+}
+
+.number{
+  padding:25px 8px;
+  text-align:center;
+
+  border-right:1px solid #193925;
+}
+
+.number:last-child{
+  border-right:none;
+}
+
+.number b{
+  font-family:"Anton";
+  font-size:31px;
+  color:var(--bright);
+}
+
+.number span{
+  display:block;
+  margin-top:5px;
+
+  font-size:7px;
+  line-height:1.4;
+  color:#879289;
+}
+
+/* =====================================================
+   FINAL REVEAL
+===================================================== */
+
+.final{
+  min-height:75vh;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  text-align:center;
+  padding:45px 22px;
+
+  position:relative;
+  overflow:hidden;
+
+  background:
+    radial-gradient(circle at center,rgba(20,181,88,.28),transparent 47%),
+    #020503;
+}
+
+.final::after{
+  content:"☘";
+  position:absolute;
+
+  font-size:330px;
+
+  color:rgba(37,212,112,.035);
+}
+
+.final-inner{
+  position:relative;
+  z-index:2;
+}
+
+.final-small{
+  font-size:8px;
+  letter-spacing:4px;
+  color:#839289;
+  font-weight:900;
+}
+
+.final h2{
+  margin-top:15px;
+
+  font-family:"Anton";
+  font-size:53px;
+  font-weight:400;
+
+  line-height:.88;
+  text-transform:uppercase;
+}
+
+.final h2 span{
+  color:var(--bright);
+}
+
+.final-names{
+  margin-top:28px;
+
+  font-size:12px;
+  font-weight:900;
+  line-height:2;
+}
+
+.clover{
+  font-size:50px;
+  margin-bottom:20px;
+}
+
+/* =====================================================
+   DISCLOSURE
+===================================================== */
+
+.note{
+  padding:25px 20px 95px;
+
+  color:#58615b;
+  font-size:8px;
+  line-height:1.7;
+  text-align:center;
+}
+
+/* =====================================================
+   BOTTOM NAV
+===================================================== */
+
+.bottom{
+  position:fixed;
+  z-index:100;
+
+  bottom:0;
+  left:50%;
+  transform:translateX(-50%);
+
+  width:100%;
+  max-width:660px;
+
+  height:64px;
+
+  display:grid;
+  grid-template-columns:repeat(5,1fr);
+
+  background:rgba(2,5,3,.96);
+  backdrop-filter:blur(15px);
+
+  border-top:1px solid #273129;
+}
+
+.bottom div{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+
+  gap:5px;
+
+  color:#7e8781;
+  font-size:7px;
+}
+
+.bottom div.active{
+  color:var(--bright);
+}
+
+.bottom i{
+  font-style:normal;
+  font-size:17px;
+}
+
+/* =====================================================
+   REVEAL ANIMATION
+===================================================== */
+
+.reveal{
+  opacity:0;
+  transform:translateY(28px);
+
+  transition:
+    opacity .85s ease,
+    transform .85s ease;
+}
+
+.reveal.visible{
+  opacity:1;
+  transform:none;
+}
+
+@media(min-width:700px){
+
+  body{
+    padding:25px 0;
+  }
+
+  .app{
+    border-radius:13px;
+  }
+
+}
+
+</style>
 </head>
 
 <body>
 
-<div class="page">
+<!-- ==============================================
+     INTRO
+============================================== -->
 
-  <!-- HEADER -->
-  <header class="topbar">
-    <div class="burger">
-      <span></span>
-      <span></span>
-      <span></span>
+<div id="intro">
+
+  <div class="intro-content">
+
+    <div class="breaking-small">
+      BREAKING NEWS
     </div>
 
-    <div class="brand">
-      <div class="brand-main">SPORT<b>ZONE</b></div>
-      <div class="brand-small">Η ΑΘΛΗΤΙΚΗ ΕΝΗΜΕΡΩΣΗ ΑΛΛΙΩΣ</div>
+    <div class="line"></div>
+
+    <div class="intro-kicker">
+      ΕΛΛΗΝΙΚΗ ΞΙΦΑΣΚΙΑ
     </div>
 
-    <div class="live">LIVE</div>
-  </header>
+    <div class="intro-big">
+      Η ΜΕΤΑΓΡΑΦΗ<br>
+      ΠΟΥ ΑΛΛΑΖΕΙ<br>
+      <span class="green">ΤΙΣ ΙΣΟΡΡΟΠΙΕΣ</span>
+    </div>
 
-  <nav class="nav">
+    <div class="intro-names">
+      ΑΝΔΡΙΑΝΑ ΘΕΟΔΩΡΟΠΟΥΛΟΥ<br>
+      ×<br>
+      ΝΙΚΟΛΕΤΑ ΧΑΤΖΗΣΑΡΑΝΤΟΥ
+    </div>
+
+    <button class="enter" onclick="openStory()">
+      ΑΝΟΙΓΜΑ ΑΠΟΚΛΕΙΣΤΙΚΟΥ
+    </button>
+
+  </div>
+
+</div>
+
+
+<div class="app">
+
+<header>
+
+  <div class="main-header">
+
+    <div class="hamburger">☰</div>
+
+    <div class="logo">
+      SPORT<span>INSIDE</span>
+    </div>
+
+    <div class="live">
+      <div class="live-dot"></div>
+      LIVE
+    </div>
+
+  </div>
+
+  <div class="categories">
     <span>ΑΡΧΙΚΗ</span>
     <span>ΠΟΔΟΣΦΑΙΡΟ</span>
     <span>ΜΠΑΣΚΕΤ</span>
-    <span class="active">ΜΕΤΑΓΡΑΦΕΣ</span>
-    <span>ΞΙΦΑΣΚΙΑ</span>
+    <span class="on">ΞΙΦΑΣΚΙΑ</span>
+    <span>ΜΕΤΑΓΡΑΦΕΣ</span>
     <span>ΠΑΡΑΣΚΗΝΙΟ</span>
-  </nav>
-
-  <div class="ticker">
-    <div class="ticker-label">BREAKING</div>
-    <div class="ticker-text">
-      ΔΙΠΛΗ ΜΕΤΑΓΡΑΦΙΚΗ ΒΟΜΒΑ ΣΤΗΝ ΞΙΦΑΣΚΙΑ — ΘΕΟΔΩΡΟΠΟΥΛΟΥ ΚΑΙ ΧΑΤΖΗΣΑΡΑΝΤΟΥ ΣΤΑ ΠΡΑΣΙΝΑ
-    </div>
   </div>
 
-
-  <article>
-
-    <!-- TITLE -->
-    <section class="hero-text">
-
-      <div class="badges">
-        <div class="badge green">ΞΙΦΑΣΚΙΑ</div>
-        <div class="badge red">ΑΠΟΚΛΕΙΣΤΙΚΟ</div>
-      </div>
-
-      <h1>
-        ΤΕΛΟΣ ΕΠΟΧΗΣ.
-        <span class="green">ΝΕΑ ΖΩΗ ΣΤΑ ΠΡΑΣΙΝΑ.</span>
-      </h1>
-
-      <div class="subtitle">
-        Ανδριάνα Θεοδωροπούλου και Νικολέτα Χατζησαράντου αφήνουν πίσω τους τον Άρη Παιανίας και ανοίγουν μαζί το επόμενο μεγάλο κεφάλαιο της καριέρας τους στον Παναθηναϊκό.
-      </div>
-
-      <div class="meta">
-        <span>SPORTZONE TEAM</span>
-        <span>11 ΑΥΓ 2026 • 16:30</span>
-      </div>
-
-    </section>
+</header>
 
 
-    <!-- AI TRANSFER PHOTO -->
-    <div class="hero-image">
-      <img
-        src="ChatGPT Image 11 Αυγ 2026, 04_23_06 μ.μ..png"
-        alt="Ανδριάνα Θεοδωροπούλου και Νικολέτα Χατζησαράντου - Παναθηναϊκός"
-      />
+<div class="ticker">
+
+  <div class="ticker-label">
+    BREAKING
+  </div>
+
+  <div class="ticker-track">
+    ΘΕΟΔΩΡΟΠΟΥΛΟΥ & ΧΑΤΖΗΣΑΡΑΝΤΟΥ • ΔΙΠΛΗ ΜΕΤΑΓΡΑΦΙΚΗ ΚΙΝΗΣΗ •
+    ΝΕΑ ΕΠΟΧΗ ΣΤΟ ΞΙΦΟΣ ΜΟΝΟΜΑΧΙΑΣ • ΤΟ ΠΑΡΑΣΚΗΝΙΟ ΤΗΣ ΑΠΟΦΑΣΗΣ
+  </div>
+
+</div>
+
+
+<main>
+
+<!-- ==============================================
+     HERO
+============================================== -->
+
+<section class="hero">
+
+  <div class="hero-bg">
+    <img
+    src="ChatGPT Image 11 Αυγ 2026, 04_23_06 μ.μ..png"
+    alt="">
+  </div>
+
+  <div class="hero-copy">
+
+    <div class="tags">
+      <div class="tag red">BREAKING</div>
+      <div class="tag green">EXCLUSIVE</div>
     </div>
 
-    <div class="caption">
-      Η νέα εποχή ξεκινά: οι δύο αθλήτριες στα πράσινα.
+    <h1>
+      ΔΙΠΛΗ<br>
+      <span>ΒΟΜΒΑ</span><br>
+      ΣΤΑ ΠΡΑΣΙΝΑ
+    </h1>
+
+    <div class="hero-deck">
+      Ανδριάνα Θεοδωροπούλου και Νικολέτα Χατζησαράντου
+      αφήνουν τον Αρίστων Παιανίας και ανοίγουν νέο κεφάλαιο
+      στον Παναθηναϊκό.
     </div>
 
-
-    <div class="content">
-
-      <div class="lead">
-        Μια απόφαση που δεν πάρθηκε σε μία μέρα. Μήνες έντασης, κούρασης και παρασκηνίου οδήγησαν τελικά τις δύο φίλες στην ίδια απόφαση: ώρα για αλλαγή.
-      </div>
-
-      <p class="dropcap">
-        Η Ανδριάνα Θεοδωροπούλου και η Νικολέτα Χατζησαράντου έχουν μοιραστεί αγώνες, ταξίδια, προπονήσεις, χαρές, απογοητεύσεις και αμέτρητες ώρες μέσα στις αίθουσες ξιφασκίας. Αυτή τη φορά όμως η σημαντικότερη κοινή τους στιγμή δεν ήρθε πάνω στην πίστα.
-      </p>
-
-      <p>
-        Ήρθε με μία απόφαση. Να κλείσουν έναν κύκλο και να ανοίξουν έναν καινούριο.
-      </p>
-
-
-      <h2 class="section-title">
-        Η ΑΠΟΦΑΣΗ ΠΟΥ <span>ΩΡΙΜΑΖΕ ΚΑΙΡΟ</span>
-      </h2>
-
-      <p>
-        Το τελευταίο διάστημα στον Άρη Παιανίας είχε δημιουργηθεί ένα δύσκολο κλίμα. Οι σχέσεις είχαν αλλάξει, οι εντάσεις είχαν αυξηθεί και η καθημερινότητα των αθλητριών είχε αρχίσει να απέχει αρκετά από αυτό που οι ίδιες ήθελαν για την αθλητική τους εξέλιξη.
-      </p>
-
-      <p>
-        Στο επίκεντρο βρισκόταν και η σχέση τους με τον τότε προπονητή Γιώργο Πασσά. Μια συνεργασία που, στο πλαίσιο αυτής της σατιρικής ιστορίας, παρουσιάζεται να έχει φτάσει σε σημείο χωρίς επιστροφή.
-      </p>
-
-
-      <!-- COACH PHOTO -->
-      <div class="photo-block">
-        <img
-          src="WhatsApp Image 2026-08-11 at 4.07.03 PM.jpeg"
-          alt="Αθλητική στιγμή"
-        />
-        <div class="photo-caption">
-          Από προηγούμενη αγωνιστική περίοδο.
-        </div>
-      </div>
-
-
-      <div class="drama">
-        <div class="drama-label">ΤΟ ΠΑΡΑΣΚΗΝΙΟ</div>
-
-        <h3>Η ΡΗΞΗ ΗΤΑΝ ΠΛΕΟΝ ΑΝΑΠΟΦΕΥΚΤΗ</h3>
-
-        <p>
-          Προπονητική πίεση, διαφορετικές αντιλήψεις, συνεχείς εντάσεις και ένα περιβάλλον που οι δύο αθλήτριες αισθάνονταν ότι δεν τις εξέφραζε πλέον. Η κατάσταση είχε αρχίσει να επηρεάζει όχι μόνο την καθημερινότητά τους αλλά και τη μεταξύ τους ισορροπία.
-        </p>
-      </div>
-
-
-      <div class="big-quote">
-        <p>
-          «Κάποια στιγμή καταλαβαίνεις ότι δεν χρειάζεσαι άλλη υπομονή. Χρειάζεσαι αλλαγή.»
-        </p>
-        <small>— ΤΟ MOOD ΤΗΣ ΜΕΤΑΓΡΑΦΗΣ</small>
-      </div>
-
-
-      <h2 class="section-title">
-        ΑΠΟ ΤΙΣ ΚΟΝΤΡΕΣ ΣΤΗΝ <span>ΚΟΙΝΗ ΑΠΟΦΑΣΗ</span>
-      </h2>
-
-      <p>
-        Ακόμα και η σχέση των δύο κοριτσιών δοκιμάστηκε. Η πίεση μιας δύσκολης αθλητικής καθημερινότητας μπορεί εύκολα να δημιουργήσει αποστάσεις, παρεξηγήσεις και ανταγωνισμό εκεί που κάποτε υπήρχε μόνο φιλία.
-      </p>
-
-      <p>
-        Όμως τελικά συνέβη το αντίθετο. Αντί να χωρίσουν οι δρόμοι τους, οι δύο αθλήτριες αποφάσισαν να τους ενώσουν ακόμα περισσότερο.
-      </p>
-
-
-      <div class="photo-block">
-        <img
-          src="WhatsApp Image 2026-08-11 at 4.02.33 PM(1).jpeg"
-          alt="Θεοδωροπούλου και Χατζησαράντου"
-        />
-        <div class="photo-caption">
-          Δίπλα δίπλα πριν από τη μεγάλη αλλαγή.
-        </div>
-      </div>
-
-
-      <h2 class="section-title">
-        ΤΟ ΧΡΟΝΙΚΟ ΜΙΑΣ <span>ΜΕΓΑΛΗΣ ΑΛΛΑΓΗΣ</span>
-      </h2>
-
-      <div class="timeline">
-
-        <div class="event red">
-          <div class="event-date">ΚΕΦΑΛΑΙΟ 01</div>
-          <div class="event-title">Η καθημερινότητα βαραίνει</div>
-          <div class="event-desc">
-            Οι εντάσεις αυξάνονται και η προπόνηση παύει να είναι το περιβάλλον που θέλουν.
-          </div>
-        </div>
-
-        <div class="event red">
-          <div class="event-date">ΚΕΦΑΛΑΙΟ 02</div>
-          <div class="event-title">Οι πρώτες σοβαρές σκέψεις αποχώρησης</div>
-          <div class="event-desc">
-            Αυτό που αρχικά έμοιαζε απλώς με μία κακή περίοδο αρχίζει να μοιάζει με τέλος εποχής.
-          </div>
-        </div>
-
-        <div class="event">
-          <div class="event-date">ΚΕΦΑΛΑΙΟ 03</div>
-          <div class="event-title">Οι δύο αθλήτριες μιλούν ανοιχτά</div>
-          <div class="event-desc">
-            Καταλαβαίνουν ότι αναζητούν ακριβώς το ίδιο πράγμα: μια πραγματική νέα αρχή.
-          </div>
-        </div>
-
-        <div class="event">
-          <div class="event-date">ΚΕΦΑΛΑΙΟ 04</div>
-          <div class="event-title">Ο Παναθηναϊκός μπαίνει στο κάδρο</div>
-          <div class="event-desc">
-            Νέο περιβάλλον. Νέοι άνθρωποι. Νέα κίνητρα.
-          </div>
-        </div>
-
-        <div class="event">
-          <div class="event-date">ΚΕΦΑΛΑΙΟ 05</div>
-          <div class="event-title">Η απόφαση παίρνεται</div>
-          <div class="event-desc">
-            Μαζί μπήκαν σε αυτή τη διαδικασία. Μαζί αποφασίζουν να αλλάξουν σελίδα.
-          </div>
-        </div>
-
-      </div>
-
-
-      <!-- BACK PHOTO -->
-      <div class="photo-block">
-        <img
-          src="WhatsApp Image 2026-08-11 at 4.02.33 PM(1).jpeg"
-          alt="Θεοδωροπούλου και Χατζησαράντου"
-        />
-        <div class="photo-caption">
-          THEODOROPOULOU — CHATZISARANTOU. Δύο ονόματα, μία νέα διαδρομή.
-        </div>
-      </div>
-
-
-      <h2 class="section-title">
-        ΚΑΙ ΜΕΤΑ ΗΡΘΕ Ο <span>ΠΑΝΑΘΗΝΑΪΚΟΣ</span>
-      </h2>
-
-      <p>
-        Η επιλογή του Παναθηναϊκού σηματοδοτεί κάτι περισσότερο από μία απλή αλλαγή συλλόγου. Για τις δύο αθλήτριες συμβολίζει μία επανεκκίνηση.
-      </p>
-
-      <p>
-        Ένα περιβάλλον όπου η προπόνηση μπορεί ξανά να γίνει αυτό που πρέπει να είναι: χώρος δουλειάς, εξέλιξης, φιλοδοξίας και κυρίως αθλητικής χαράς.
-      </p>
-
-
-      <div class="big-quote">
-        <p>
-          «Νέα ομάδα. Νέοι στόχοι. Ίδια δίψα. Και αυτή τη φορά, μαζί.»
-        </p>
-        <small>— ΝΕΑ ΣΕΛΙΔΑ</small>
-      </div>
-
-
-      <!-- FRIENDSHIP PHOTOS -->
-      <div class="collage">
-
-        <img
-          src="IMG_3116.jpeg"
-          alt="Οι δύο αθλήτριες μαζί"
-        />
-
-        <img
-          src="WhatsApp Image 2026-08-11 at 4.01.41 PM(1).jpeg"
-          alt="Οι δύο αθλήτριες"
-        />
-
-        <img
-          class="wide"
-          src="WhatsApp Image 2026-08-11 at 4.03.36 PM.jpeg"
-          alt="Αγωνιστική στιγμή"
-        />
-
-      </div>
-
-
-      <h2 class="section-title">
-        ΑΠΟ ΣΥΝΑΘΛΗΤΡΙΕΣ. <span>ΣΕ ΣΥΜΜΑΧΟΥΣ.</span>
-      </h2>
-
-      <p>
-        Πίσω από κάθε μεταγραφή υπάρχουν αποτελέσματα, συζητήσεις και αποφάσεις. Πίσω από αυτήν υπάρχουν όμως και χρόνια κοινών εμπειριών.
-      </p>
-
-      <p>
-        Οι δυο τους έχουν βρεθεί μαζί σε διοργανώσεις, σε προπονήσεις, σε ταξίδια της Εθνικής και σε στιγμές που ελάχιστοι έξω από τον χώρο μπορούν να καταλάβουν.
-      </p>
-
-
-      <!-- PLAYERS -->
-      <div class="players">
-
-        <div class="player">
-          <img
-            src="IMG_3116.jpeg"
-            alt="Ανδριάνα Θεοδωροπούλου"
-          />
-
-          <div class="player-info">
-            <div class="player-name">
-              ΑΝΔΡΙΑΝΑ<br>
-              <span>ΘΕΟΔΩΡΟΠΟΥΛΟΥ</span>
-            </div>
-
-            <div class="player-tag">
-              ΞΙΦΑΣΚΙΑ • ΠΑΝΑΘΗΝΑΪΚΟΣ
-            </div>
-          </div>
-        </div>
-
-
-        <div class="player">
-          <img
-            src="IMG_3117.jpeg"
-            alt="Νικολέτα Χατζησαράντου"
-          />
-
-          <div class="player-info">
-            <div class="player-name">
-              ΝΙΚΟΛΕΤΑ<br>
-              <span>ΧΑΤΖΗΣΑΡΑΝΤΟΥ</span>
-            </div>
-
-            <div class="player-tag">
-              ΞΙΦΑΣΚΙΑ • ΠΑΝΑΘΗΝΑΪΚΟΣ
-            </div>
-          </div>
-        </div>
-
-      </div>
-
-
-      <h2 class="section-title">
-        ΤΟ ΤΕΛΕΥΤΑΙΟ <span>ΚΕΦΑΛΑΙΟ</span>
-      </h2>
-
-      <p>
-        Κάπως έτσι, μια ιστορία που ξεκίνησε με ένταση καταλήγει σε μια από τις μεγαλύτερες αλλαγές της κοινής αθλητικής τους πορείας.
-      </p>
-
-      <p>
-        Δεν είναι απλώς δύο μεταγραφές.
-      </p>
-
-      <p>
-        Είναι δύο αθλήτριες που αποφάσισαν ότι η επόμενη σελίδα τους θα γραφτεί διαφορετικά.
-      </p>
-
-      <p>
-        Και θα γραφτεί στα πράσινα.
-      </p>
-
+    <div class="hero-meta">
+      <span>SPORTINSIDE</span>
+      <span>11.08.2026 • 16:30</span>
     </div>
 
+  </div>
 
-    <div class="ending">
-
-      <div class="clover">☘️</div>
-
-      <h2>
-        NEW CLUB.<br>
-        NEW ERA.<br>
-        <span>SAME GIRLS.</span>
-      </h2>
-
-      <p>
-        Ανδριάνα Θεοδωροπούλου × Νικολέτα Χατζησαράντου.<br><br>
-        Μαζί μέχρι την επόμενη πίστα.
-      </p>
-
-    </div>
+</section>
 
 
-    <div class="disclaimer">
-      Το παρόν αποτελεί σατιρικό/φανταστικό αθλητικό concept που δημιουργήθηκε για ιδιωτική ψυχαγωγία μεταξύ φίλων. Οι δραματοποιημένες περιγραφές και οι υποτιθέμενες δηλώσεις δεν αποτελούν πραγματικό δημοσιογραφικό ρεπορτάζ ή πραγματικές δηλώσεις των αναφερόμενων προσώπων.
-    </div>
+<!-- ==============================================
+     SHOCK
+============================================== -->
 
-  </article>
+<section class="shock reveal">
+
+  <div class="shock-label">
+    TRANSFER SHOCK
+  </div>
+
+  <h2>
+    ΔΕΝ ΕΙΝΑΙ<br>
+    ΜΙΑ ΜΕΤΑΓΡΑΦΗ.<br>
+    <span>ΕΙΝΑΙ ΑΛΛΑΓΗ ΕΠΟΧΗΣ.</span>
+  </h2>
+
+  <p>
+    Δύο αθλήτριες της Εθνικής, δύο πρωταθλήτριες Ελλάδας,
+    μία κοινή διαδρομή και μία μεταγραφική κίνηση που
+    αλλάζει τα δεδομένα στο ελληνικό ξίφος μονομαχίας.
+  </p>
+
+</section>
+
+
+<article class="content">
+
+<div class="lead reveal">
+Η μετακίνηση της Ανδριάνας Θεοδωροπούλου και της
+Νικολέτας Χατζησαράντου δεν μπορεί να αντιμετωπιστεί σαν
+μια συνηθισμένη αλλαγή συλλόγου.
+</div>
+
+<p class="reveal">
+Οι δύο αθλήτριες έχουν υπάρξει συναθλήτριες,
+αντίπαλες σε μεγάλους εγχώριους τελικούς, μέλη ελληνικών
+αποστολών στο εξωτερικό και βασικά στελέχη μιας από τις
+ισχυρότερες ομάδες του ελληνικού ξίφους μονομαχίας.
+</p>
+
+<p class="reveal">
+Τώρα, η κοινή τους πορεία αλλάζει κατεύθυνση.
+Ο προορισμός είναι ο ίδιος:
+<strong>Παναθηναϊκός.</strong>
+</p>
+
+
+<div class="statement reveal">
+
+  <div class="small">
+    THE DOUBLE MOVE
+  </div>
+
+  <div class="big">
+    ΔΥΟ ΠΡΩΤΑΘΛΗΤΡΙΕΣ.<br>
+    ΕΝΑΣ ΝΕΟΣ<br>
+    <span>ΠΡΟΟΡΙΣΜΟΣ.</span>
+  </div>
 
 </div>
 
 
-<!-- MOBILE BOTTOM NAV -->
-<div class="bottom-nav">
+<!-- ==============================================
+     PLAYERS
+============================================== -->
 
-  <div class="bottom-item">
-    <div class="icon">⌂</div>
-    <div>ΑΡΧΙΚΗ</div>
+<div class="section-head reveal">
+
+  <div class="section-no">
+    01 / THE ATHLETES
   </div>
 
-  <div class="bottom-item">
-    <div class="icon">▤</div>
-    <div>ΡΟΗ</div>
+  <h2>
+    ΤΑ ΔΥΟ ΟΝΟΜΑΤΑ<br>
+    <span>ΣΤΟ ΕΠΙΚΕΝΤΡΟ</span>
+  </h2>
+
+</div>
+
+
+<div class="player-area">
+
+<!-- ANDRIANA -->
+
+<div class="player-card reveal">
+
+  <div class="player-photo">
+    <img
+    src="IMG_3116.jpeg"
+    alt="Ανδριάνα Θεοδωροπούλου">
   </div>
 
-  <div class="bottom-item active">
-    <div class="icon">☘</div>
-    <div>EXCLUSIVE</div>
-  </div>
+  <div class="player-info">
 
-  <div class="bottom-item">
-    <div class="icon">◉</div>
-    <div>LIVE</div>
-  </div>
+    <div class="player-number">
+      ATHLETE 01
+    </div>
 
-  <div class="bottom-item">
-    <div class="icon">☰</div>
-    <div>MENU</div>
+    <div class="player-name">
+      ΑΝΔΡΙΑΝΑ<br>
+      <span>ΘΕΟΔΩΡΟΠΟΥΛΟΥ</span>
+    </div>
+
+    <div class="weapon">
+      🇬🇷 ΕΛΛΑΔΑ • ΞΙΦΟΣ ΜΟΝΟΜΑΧΙΑΣ
+    </div>
+
+    <div class="achievements">
+
+      <div class="achievement">
+        <b>🥇 2026</b>
+        <span>ΠΡΩΤΑΘΛΗΤΡΙΑ ΕΛΛΑΔΑΣ ΑΤΟΜΙΚΟ</span>
+      </div>
+
+      <div class="achievement">
+        <b>🌍 15η</b>
+        <span>ΠΑΓΚΟΣΜΙΟ ΠΡΩΤΑΘΛΗΜΑ U20 2024</span>
+      </div>
+
+      <div class="achievement">
+        <b>🇬🇷 ΕΘΝΙΚΗ</b>
+        <span>ΔΙΕΘΝΕΙΣ ΔΙΟΡΓΑΝΩΣΕΙΣ</span>
+      </div>
+
+      <div class="achievement">
+        <b>🏆 TEAM</b>
+        <span>ΠΑΝΕΛΛΗΝΙΕΣ ΔΙΑΚΡΙΣΕΙΣ ΜΕ ΑΡΙΣΤΩΝ</span>
+      </div>
+
+    </div>
+
   </div>
 
 </div>
+
+
+<!-- NIKOLETA -->
+
+<div class="player-card reveal">
+
+  <div class="player-photo">
+    <img
+    src="IMG_3117.jpeg"
+    alt="Νικολέτα Χατζησαράντου">
+  </div>
+
+  <div class="player-info">
+
+    <div class="player-number">
+      ATHLETE 02
+    </div>
+
+    <div class="player-name">
+      ΝΙΚΟΛΕΤΑ<br>
+      <span>ΧΑΤΖΗΣΑΡΑΝΤΟΥ</span>
+    </div>
+
+    <div class="weapon">
+      🇬🇷 ΕΛΛΑΔΑ • ΞΙΦΟΣ ΜΟΝΟΜΑΧΙΑΣ
+    </div>
+
+    <div class="achievements">
+
+      <div class="achievement">
+        <b>🥇 2021</b>
+        <span>ΠΡΩΤΑΘΛΗΤΡΙΑ ΕΛΛΑΔΑΣ ΑΤΟΜΙΚΟ</span>
+      </div>
+
+      <div class="achievement">
+        <b>🏆 2026</b>
+        <span>ΝΙΚΗΤΡΙΑ ΚΥΠΕΛΛΟΥ ΞΙΦΟΥ ΜΟΝΟΜΑΧΙΑΣ</span>
+      </div>
+
+      <div class="achievement">
+        <b>🇬🇷 ΕΘΝΙΚΗ</b>
+        <span>ΔΙΕΘΝΕΙΣ ΔΙΟΡΓΑΝΩΣΕΙΣ</span>
+      </div>
+
+      <div class="achievement">
+        <b>🏆 TEAM</b>
+        <span>ΠΑΝΕΛΛΗΝΙΕΣ ΔΙΑΚΡΙΣΕΙΣ ΜΕ ΑΡΙΣΤΩΝ</span>
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
+
+</div>
+
+
+<!-- ==============================================
+     TRANSFER BOARD
+============================================== -->
+
+<div class="transfer-board reveal">
+
+  <small>
+    OFFICIAL TRANSFER PATH
+  </small>
+
+  <div class="oldclub">
+    ΑΡΙΣΤΩΝ ΠΑΙΑΝΙΑΣ
+  </div>
+
+  <div class="arrow">
+    ↓
+  </div>
+
+  <div class="newclub">
+    ΠΑΝΑΘΗΝΑΪΚΟΣ
+  </div>
+
+  <div class="transfer-caption">
+    ΘΕΟΔΩΡΟΠΟΥΛΟΥ × ΧΑΤΖΗΣΑΡΑΝΤΟΥ
+  </div>
+
+</div>
+
+
+<!-- ==============================================
+     HISTORY
+============================================== -->
+
+<div class="section-head reveal">
+
+  <div class="section-no">
+    02 / THE HISTORY
+  </div>
+
+  <h2>
+    ΜΙΑ ΚΟΙΝΗ<br>
+    <span>ΑΓΩΝΙΣΤΙΚΗ ΙΣΤΟΡΙΑ</span>
+  </h2>
+
+</div>
+
+<p class="reveal">
+Οι δρόμοι των δύο αθλητριών έχουν συναντηθεί
+επανειλημμένα στα σημαντικότερα ραντεβού του ελληνικού
+ξίφους μονομαχίας.
+</p>
+
+<p class="reveal">
+Το 2021 βρέθηκαν μαζί στην ομάδα του Αρίστων Παιανίας
+που κατέκτησε το Πανελλήνιο Πρωτάθλημα.
+Χρόνια αργότερα εξακολουθούσαν να διεκδικούν τις
+κορυφαίες θέσεις της χώρας.
+</p>
+
+
+<div class="gallery reveal">
+
+  <img src="WhatsApp Image 2026-08-11 at 4.01.41 PM(1).jpeg">
+
+  <img src="WhatsApp Image 2026-08-11 at 4.02.33 PM(1).jpeg">
+
+  <img
+  class="big"
+  src="WhatsApp Image 2026-08-11 at 4.03.36 PM.jpeg">
+
+</div>
+
+
+<div class="numbers reveal">
+
+  <div class="number">
+    <b>2</b>
+    <span>ΠΡΩΤΑΘΛΗΤΡΙΕΣ ΕΛΛΑΔΑΣ</span>
+  </div>
+
+  <div class="number">
+    <b>1</b>
+    <span>ΚΟΙΝΗ ΟΜΑΔΑ</span>
+  </div>
+
+  <div class="number">
+    <b>∞</b>
+    <span>ΝΕΟΣ ΣΤΟΧΟΣ</span>
+  </div>
+
+</div>
+
+
+<!-- ==============================================
+     INTERNATIONAL
+============================================== -->
+
+<div class="section-head reveal">
+
+  <div class="section-no">
+    03 / NATIONAL TEAM
+  </div>
+
+  <h2>
+    ΑΠΟ ΤΗΝ ΕΛΛΑΔΑ<br>
+    <span>ΣΤΟΝ ΚΟΣΜΟ</span>
+  </h2>
+
+</div>
+
+<p class="reveal">
+Θεοδωροπούλου και Χατζησαράντου έχουν φορέσει τα
+χρώματα της Ελλάδας σε κορυφαίες διοργανώσεις.
+Το 2024 συμμετείχαν μαζί στο Ευρωπαϊκό Πρωτάθλημα,
+ενώ το καλοκαίρι του 2026 βρέθηκαν ξανά στην ελληνική
+αποστολή για το Παγκόσμιο Πρωτάθλημα του Χονγκ Κονγκ.
+</p>
+
+
+<div class="fullphoto reveal">
+
+  <img
+  src="WhatsApp Image 2026-08-11 at 4.02.33 PM(1).jpeg">
+
+  <div class="photo-caption">
+    Διεθνείς διοργανώσεις, Εθνική ομάδα και χρόνια κοινής πορείας.
+  </div>
+
+</div>
+
+
+<!-- ==============================================
+     DRAMA
+============================================== -->
+
+<div class="darkchapter reveal">
+
+  <div class="red-label">
+    INSIDE STORY
+  </div>
+
+  <h2>
+    ΤΟ ΠΑΡΑΣΚΗΝΙΟ<br>
+    ΜΙΑΣ ΡΗΞΗΣ
+  </h2>
+
+  <p>
+    Κάποια στιγμή, οι αγωνιστικές ισορροπίες άρχισαν να
+    συναντούν μια πολύ πιο δύσκολη καθημερινότητα.
+  </p>
+
+  <p>
+    Στο πλαίσιο της σατιρικής αυτής ιστορίας, η σχέση των
+    δύο αθλητριών με το προηγούμενο προπονητικό περιβάλλον
+    παρουσιάζεται να περνά περίοδο έντασης και
+    διαφορετικών αντιλήψεων για την προπόνηση και
+    την εξέλιξή τους.
+  </p>
+
+</div>
+
+
+<div class="section-head reveal">
+
+  <div class="section-no">
+    04 / THE TIMELINE
+  </div>
+
+  <h2>
+    ΠΩΣ ΦΤΑΣΑΜΕ<br>
+    <span>ΣΤΗ ΜΕΤΑΓΡΑΦΗ</span>
+  </h2>
+
+</div>
+
+
+<div class="timeline">
+
+  <div class="timeline-item red reveal">
+
+    <div class="time">
+      PHASE 01
+    </div>
+
+    <div class="timeline-title">
+      Η πίεση αυξάνεται
+    </div>
+
+    <div class="timeline-text">
+      Το περιβάλλον παύει να λειτουργεί όπως παλιότερα
+      για τις δύο αθλήτριες.
+    </div>
+
+  </div>
+
+
+  <div class="timeline-item red reveal">
+
+    <div class="time">
+      PHASE 02
+    </div>
+
+    <div class="timeline-title">
+      Διαφορετικές κατευθύνσεις
+    </div>
+
+    <div class="timeline-text">
+      Προπονητική φιλοσοφία, αγωνιστικοί στόχοι και
+      καθημερινότητα αρχίζουν να αποκλίνουν.
+    </div>
+
+  </div>
+
+
+  <div class="timeline-item reveal">
+
+    <div class="time">
+      PHASE 03
+    </div>
+
+    <div class="timeline-title">
+      Η αλλαγή γίνεται σοβαρό ενδεχόμενο
+    </div>
+
+    <div class="timeline-text">
+      Το ζήτημα πλέον δεν είναι αν χρειάζεται κάτι νέο,
+      αλλά ποιο θα είναι το επόμενο βήμα.
+    </div>
+
+  </div>
+
+
+  <div class="timeline-item reveal">
+
+    <div class="time">
+      PHASE 04
+    </div>
+
+    <div class="timeline-title">
+      Ο Παναθηναϊκός
+    </div>
+
+    <div class="timeline-text">
+      Το νέο περιβάλλον προσφέρει την προοπτική μιας
+      πραγματικής επανεκκίνησης.
+    </div>
+
+  </div>
+
+
+  <div class="timeline-item reveal">
+
+    <div class="time">
+      PHASE 05
+    </div>
+
+    <div class="timeline-title">
+      Η νέα εποχή
+    </div>
+
+    <div class="timeline-text">
+      Δύο αθλήτριες που αγωνίστηκαν μαζί για χρόνια
+      περνούν ταυτόχρονα στην επόμενη φάση.
+    </div>
+
+  </div>
+
+</div>
+
+
+<div class="quote reveal">
+
+  <p>
+    Δεν αλλάζει μόνο η φανέλα.
+    Αλλάζουν οι ισορροπίες στο ελληνικό
+    ξίφος μονομαχίας.
+  </p>
+
+  <span>
+    SPORTINSIDE ANALYSIS
+  </span>
+
+</div>
+
+
+<!-- ==============================================
+     FRIENDSHIP
+============================================== -->
+
+<div class="section-head reveal">
+
+  <div class="section-no">
+    05 / TOGETHER
+  </div>
+
+  <h2>
+    ΑΝΤΙΠΑΛΕΣ ΣΤΗΝ ΠΙΣΤΑ.<br>
+    <span>ΜΑΖΙ ΣΤΗ ΝΕΑ ΕΠΟΧΗ.</span>
+  </h2>
+
+</div>
+
+
+<p class="reveal">
+Η ιστορία τους έχει και μία ιδιαίτερη αγωνιστική
+διάσταση: πολλές φορές χρειάστηκε να βρεθούν η μία
+απέναντι στην άλλη.
+</p>
+
+<p class="reveal">
+Το 2022 η Χατζησαράντου επικράτησε της Θεοδωροπούλου
+σε διοργάνωση των κορυφαίων Ελληνίδων του ξίφους
+μονομαχίας. Τον Μάρτιο του 2026, στον τελικό Κυπέλλου,
+οι ίδιες δύο αθλήτριες κατέλαβαν ξανά τις δύο πρώτες
+θέσεις.
+</p>
+
+<p class="reveal">
+Η αντιπαλότητα της πίστας όμως δεν αναιρεί την κοινή
+διαδρομή. Τώρα οι δύο πλευρές της ίδιας αγωνιστικής
+ιστορίας συναντιούνται ξανά με τα ίδια χρώματα.
+</p>
+
+
+<div class="fullphoto reveal">
+
+  <img src="IMG_3117.jpeg">
+
+</div>
+
+
+<!-- ==============================================
+     PAO
+============================================== -->
+
+<div class="section-head reveal">
+
+  <div class="section-no">
+    06 / NEW CHAPTER
+  </div>
+
+  <h2>
+    ΓΙΑΤΙ ΑΥΤΗ Η ΚΙΝΗΣΗ<br>
+    <span>ΕΙΝΑΙ ΤΟΣΟ ΜΕΓΑΛΗ</span>
+  </h2>
+
+</div>
+
+
+<p class="reveal">
+Μια ταυτόχρονη μετακίνηση δύο αθλητριών με παρουσία
+στην Εθνική ομάδα, ατομικούς πανελλήνιους τίτλους και
+πολυετή κοινή ιστορία έχει διαφορετική βαρύτητα από
+μία συνηθισμένη μεταγραφή.
+</p>
+
+<p class="reveal">
+Για τον Παναθηναϊκό, το υποθετικό deal σημαίνει δύο
+έτοιμες αθλήτριες υψηλού επιπέδου. Για τον Αρίστων,
+σημαίνει την αποχώρηση δύο προσώπων που έχουν συνδεθεί
+με μεγάλες στιγμές της γυναικείας ομάδας.
+</p>
+
+
+<div class="statement reveal">
+
+  <div class="small">
+    NEW BALANCE OF POWER
+  </div>
+
+  <div class="big">
+    ΤΟ ΕΛΛΗΝΙΚΟ ΞΙΦΟΣ<br>
+    ΜΠΑΙΝΕΙ ΣΕ<br>
+    <span>ΝΕΑ ΕΠΟΧΗ</span>
+  </div>
+
+</div>
+
+
+<!-- ==============================================
+     FINAL PHOTO
+============================================== -->
+
+<div class="fullphoto reveal">
+
+  <img
+  src="ChatGPT Image 11 Αυγ 2026, 04_23_06 μ.μ..png">
+
+</div>
+
+</article>
+
+
+<!-- ==============================================
+     FINAL
+============================================== -->
+
+<section class="final">
+
+  <div class="final-inner reveal">
+
+    <div class="clover">
+      ☘
+    </div>
+
+    <div class="final-small">
+      THE END OF AN ERA
+    </div>
+
+    <h2>
+      THE BEGINNING<br>
+      OF A<br>
+      <span>NEW ONE.</span>
+    </h2>
+
+    <div class="final-names">
+      ΑΝΔΡΙΑΝΑ ΘΕΟΔΩΡΟΠΟΥΛΟΥ<br>
+      ×<br>
+      ΝΙΚΟΛΕΤΑ ΧΑΤΖΗΣΑΡΑΝΤΟΥ
+    </div>
+
+  </div>
+
+</section>
+
+
+<div class="note">
+
+Το παρόν site αποτελεί ιδιωτικό, σατιρικό και
+δραματοποιημένο concept μεταξύ φίλων. Η υποτιθέμενη
+μεταγραφή και οι περιγραφές προσωπικών σχέσεων ή
+παρασκηνίου δεν αποτελούν πραγματικό δημοσιογραφικό
+ρεπορτάζ. Τα αγωνιστικά στοιχεία που αναφέρονται
+βασίζονται σε δημοσιευμένα αποτελέσματα της
+Ελληνικής Ομοσπονδίας Ξιφασκίας.
+
+</div>
+
+</main>
+
+</div>
+
+
+<!-- BOTTOM NAV -->
+
+<div class="bottom">
+
+  <div>
+    <i>⌂</i>
+    ΑΡΧΙΚΗ
+  </div>
+
+  <div>
+    <i>▤</i>
+    ΡΟΗ
+  </div>
+
+  <div class="active">
+    <i>⚔</i>
+    EXCLUSIVE
+  </div>
+
+  <div>
+    <i>●</i>
+    LIVE
+  </div>
+
+  <div>
+    <i>☰</i>
+    MENU
+  </div>
+
+</div>
+
+
+<script>
+
+/* INTRO */
+
+function openStory(){
+
+  document
+  .getElementById("intro")
+  .classList
+  .add("closed");
+
+}
+
+
+/* SCROLL REVEAL */
+
+const observer =
+new IntersectionObserver(
+
+(entries)=>{
+
+  entries.forEach(entry=>{
+
+    if(entry.isIntersecting){
+
+      entry
+      .target
+      .classList
+      .add("visible");
+
+    }
+
+  });
+
+},
+
+{
+  threshold:.12
+}
+
+);
+
+
+document
+.querySelectorAll(".reveal")
+.forEach(el=>observer.observe(el));
+
+
+/* SUBTLE PARALLAX */
+
+window.addEventListener("scroll",()=>{
+
+  const hero =
+  document.querySelector(".hero-bg img");
+
+  if(!hero) return;
+
+  const y =
+  Math.min(window.scrollY * .07,30);
+
+  hero.style.transform =
+  `scale(1.05) translateY(${y}px)`;
+
+});
+
+</script>
 
 </body>
 </html>
